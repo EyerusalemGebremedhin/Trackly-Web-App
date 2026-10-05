@@ -1,0 +1,112 @@
+import Link from "next/link";
+import { CheckCircle2, Users, Sparkles } from "lucide-react";
+import Logo from "@/components/Logo";
+import HeroSlider from "@/components/HeroSlider";
+import ThemeToggle from "@/components/ThemeToggle";
+
+const FEATURES = [
+  {
+    icon: CheckCircle2,
+    title: "Track your own progress",
+    body: "Daily or weekly check-ins: what you aimed for, what got done, what's in the way. Your own honest record, kept over time.",
+  },
+  {
+    icon: Users,
+    title: "Lead a team with clarity",
+    body: "See everyone's progress against a shared goal, who's blocked, and who's carrying too much, without chasing status updates.",
+  },
+  {
+    icon: Sparkles,
+    title: "AI that reads the details",
+    body: "Not just done or not done. The analyzer weighs blockers and workload before judging, so it's a fair review, not a guess.",
+  },
+];
+
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-paper">
+      {/* Top half: sliding images with the menu floating over them */}
+      <div className="relative h-[50vh] min-h-[420px]">
+        <HeroSlider />
+
+        <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 md:px-12">
+          <span className="flex items-center gap-2.5 font-serif text-2xl text-white">
+            <Logo size={32} reversed />
+            Trackly
+          </span>
+          <nav className="flex items-center gap-3">
+            <div className="rounded-full bg-surface p-1 shadow">
+              <ThemeToggle />
+            </div>
+            <Link
+              href="/login"
+              className="hidden rounded-md px-3 py-2 text-sm text-white hover:bg-white/10 sm:block"
+            >
+              Log in
+            </Link>
+            <Link
+              href="/signup"
+              className="rounded-md bg-white px-4 py-2 text-sm font-medium text-[#3C050F] transition-colors hover:bg-[#F5DFE1]"
+            >
+              Get started free
+            </Link>
+          </nav>
+        </header>
+      </div>
+
+      {/* Headline and buttons */}
+      <section className="mx-auto max-w-3xl px-6 py-14 text-center md:py-16">
+        <h1 className="font-serif text-5xl leading-tight text-ink md:text-6xl">
+          Progress, <span className="text-primary">tracked honestly.</span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-lg text-muted">
+          Whether it&apos;s just you, or a team you lead, check in on what you actually did,
+          what&apos;s blocking you, and let the honest record speak for itself.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/signup"
+            className="rounded-lg bg-primary px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+          >
+            Get started free
+          </Link>
+          <Link
+            href="/login"
+            className="rounded-lg border border-hairline px-7 py-3 text-sm text-ink hover:border-primary"
+          >
+            Log in
+          </Link>
+        </div>
+        <p className="mt-6 text-xs text-muted">
+          Daily, weekly or monthly check-ins · Personal plans and team boards · Fair AI feedback
+        </p>
+      </section>
+
+      {/* Features */}
+      <section className="mx-auto grid max-w-6xl gap-6 px-6 pb-16 md:grid-cols-3 md:px-12">
+        {FEATURES.map(({ icon: Icon, title, body }) => (
+          <div key={title} className="rounded-md border border-hairline bg-surface p-5">
+            <Icon size={22} className="mb-3 text-primary" />
+            <h3 className="mb-1.5 font-serif text-lg text-accent">{title}</h3>
+            <p className="text-sm text-muted">{body}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* Quote */}
+      <section className="mx-auto max-w-3xl px-6 py-16 text-center md:px-12">
+        <p className="font-serif text-2xl leading-snug text-ink md:text-3xl">
+          &quot;What gets checked in, gets seen. What gets seen, gets fair credit.&quot;
+        </p>
+        <p className="mt-4 text-sm text-muted">The idea behind Trackly.</p>
+      </section>
+
+      <footer className="border-t border-hairline">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-xs text-muted md:px-12">
+          <span>Trackly</span>
+          <span>Progress, tracked honestly.</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
